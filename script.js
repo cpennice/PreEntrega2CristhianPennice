@@ -47,22 +47,22 @@ addItemButton.addEventListener("click", function () {
   }
 });
 
-// forEach
+// Ejemplo de cómo utilizar forEach
 cartItems.forEach((item) => console.log(item));
 
-// map para obtener un array con los precios
+// Ejemplo de cómo utilizar map para obtener un array con los precios
 const precios = cartItems.map((item) => item.precio);
 
-// reduce para obtener el valor total de todos los artículos
+// Ejemplo de cómo utilizar reduce para obtener el valor total de todos los artículos
 const total = cartItems.reduce(
   (total, item) => total + item.precio * item.cantidad,
   0
 );
 
-// find para buscar un artículo por su nombre
+// Ejemplo de cómo utilizar find para buscar un artículo por su nombre
 const itemBuscado = cartItems.find(
   (item) => item.nombre === "nombreDelArticulo"
 );
 
-// filter para obtener un array con los artículos que cumplen una condición
+// Ejemplo de cómo utilizar filter para obtener un array con los artículos que cumplen una condición
 const itemsFiltrados = cartItems.filter((item) => item.precio > 10);
