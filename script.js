@@ -1,7 +1,9 @@
 const addItemButton = document.querySelector("#addItemButton");
 const cartBody = document.querySelector("#cartBody");
 const totalValueSpan = document.querySelector("#totalValue");
-let valorTotal = 0;
+
+// Creamos un array vacío para almacenar los artículos
+let cartItems = [];
 
 addItemButton.addEventListener("click", function () {
   // Pide la información del nuevo artículo
@@ -15,8 +17,20 @@ addItemButton.addEventListener("click", function () {
 
   // Verifica que la cantidad sea mayor a 0
   if (cantidadArticulo > 0) {
+    // Agrega el nuevo artículo al carrito
+    const newCartItem = {
+      nombre: nombreArticulo,
+      precio: precioArticulo,
+      cantidad: cantidadArticulo,
+    };
+    cartItems.push(newCartItem);
+
     // Actualiza el valor total
-    valorTotal += precioArticulo * cantidadArticulo;
+    const newCartItemTotal = precioArticulo * cantidadArticulo;
+    const cartItemsTotal = cartItems.reduce(
+      (total, item) => total + item.precio * item.cantidad,
+      0
+    );
 
     // Agrega una nueva fila a la tabla
     const newRow = document.createElement("tr");
@@ -24,11 +38,31 @@ addItemButton.addEventListener("click", function () {
       <td>${nombreArticulo}</td>
       <td>${precioArticulo}</td>
       <td>${cantidadArticulo}</td>
-      <td>${precioArticulo * cantidadArticulo}</td>
+      <td>${newCartItemTotal}</td>
     `;
     cartBody.appendChild(newRow);
 
     // Actualiza el valor total en la página
-    totalValueSpan.textContent = valorTotal;
+    totalValueSpan.textContent = cartItemsTotal;
   }
 });
+
+// forEach
+cartItems.forEach((item) => console.log(item));
+
+// map para obtener un array con los precios
+const precios = cartItems.map((item) => item.precio);
+
+// reduce para obtener el valor total de todos los artículos
+const total = cartItems.reduce(
+  (total, item) => total + item.precio * item.cantidad,
+  0
+);
+
+// find para buscar un artículo por su nombre
+const itemBuscado = cartItems.find(
+  (item) => item.nombre === "nombreDelArticulo"
+);
+
+// filter para obtener un array con los artículos que cumplen una condición
+const itemsFiltrados = cartItems.filter((item) => item.precio > 10);
