@@ -2,11 +2,13 @@ const addItemButton = document.querySelector("#addItemButton");
 const cartBody = document.querySelector("#cartBody");
 const totalValueSpan = document.querySelector("#totalValue");
 
-// Creamos un array vacío para almacenar los artículos
+// Array vacio para poder trabajar con los valores
+
 let cartItems = [];
 
 addItemButton.addEventListener("click", function () {
-  // Pide la información del nuevo artículo
+  // Consulta nueva info a valor
+
   const nombreArticulo = prompt("Ingrese el nombre del artículo:");
   const precioArticulo = parseFloat(
     prompt("Ingrese el precio de " + nombreArticulo + ":")
@@ -15,9 +17,11 @@ addItemButton.addEventListener("click", function () {
     prompt("Ingrese la cantidad de " + nombreArticulo + ":")
   );
 
-  // Verifica que la cantidad sea mayor a 0
+  // Verifico que sea mayor a 0
+
   if (cantidadArticulo > 0) {
-    // Agrega el nuevo artículo al carrito
+    // Agrego nuevo valor al carrito
+
     const newCartItem = {
       nombre: nombreArticulo,
       precio: precioArticulo,
@@ -25,14 +29,16 @@ addItemButton.addEventListener("click", function () {
     };
     cartItems.push(newCartItem);
 
-    // Actualiza el valor total
+    // Actualizo el Total
+
     const newCartItemTotal = precioArticulo * cantidadArticulo;
     const cartItemsTotal = cartItems.reduce(
       (total, item) => total + item.precio * item.cantidad,
       0
     );
 
-    // Agrega una nueva fila a la tabla
+    // Agrego nueva fila a tabla
+
     const newRow = document.createElement("tr");
     newRow.innerHTML = `
       <td>${nombreArticulo}</td>
@@ -42,27 +48,33 @@ addItemButton.addEventListener("click", function () {
     `;
     cartBody.appendChild(newRow);
 
-    // Actualiza el valor total en la página
+    // Actualiza el valor final
+
     totalValueSpan.textContent = cartItemsTotal;
   }
 });
 
-// Ejemplo de cómo utilizar forEach
+// Cambiar para Utilizar forEach
+
 cartItems.forEach((item) => console.log(item));
 
-// Ejemplo de cómo utilizar map para obtener un array con los precios
+// Cambiar para utilizar Map
+
 const precios = cartItems.map((item) => item.precio);
 
-// Ejemplo de cómo utilizar reduce para obtener el valor total de todos los artículos
+// Cambiar para utilizar Reduce
+
 const total = cartItems.reduce(
   (total, item) => total + item.precio * item.cantidad,
   0
 );
 
-// Ejemplo de cómo utilizar find para buscar un artículo por su nombre
+// Cambiar para utilizar Find
+
 const itemBuscado = cartItems.find(
   (item) => item.nombre === "nombreDelArticulo"
 );
 
-// Ejemplo de cómo utilizar filter para obtener un array con los artículos que cumplen una condición
+// Cambiar para utilizar Filter
+
 const itemsFiltrados = cartItems.filter((item) => item.precio > 10);
